@@ -1,6 +1,8 @@
 pub mod algos;
+pub mod data;
 use algos::exchanges;
 use algos::sorts;
+use data::testarrays;
 // print the function name
 fn println_fn_name<T>(func: T) {
     println!("Position at: ({})", std::any::type_name::<T>());
@@ -9,7 +11,8 @@ fn println_fn_name<T>(func: T) {
 fn main() {
     // import_test();
     // bubble_sort_test();
-    swap_num();
+    // swap_num();
+    quick_sort_test();
 }
 
 fn import_test() {
@@ -17,11 +20,26 @@ fn import_test() {
     sorts::hello_sorts();
 }
 
+fn quick_sort_test() {
+    println_fn_name(quick_sort_test);
+    let mut arr = Vec::from(testarrays::TEST_I32_VEC_1);
+    println!("Input -> {:?}", arr);
+    let l = arr.len() - 1;
+    sorts::quick_sort::sort(&mut arr, 0, l as i32);
+    println!("Result-> {:?}", arr);
+
+    let mut arr = testarrays::generate_0_100_vec(8);
+    println!("Input -> {:?}", arr);
+    let l = arr.len() - 1;
+    sorts::quick_sort::sort(&mut arr, 0, l as i32);
+    println!("Result-> {:?}", arr);
+}
+
 fn bubble_sort_test() {
     println_fn_name(bubble_sort_test);
-    let mut arr = vec![1, 3, 4, 8, 2, 7, 4, 0];
+    let mut arr = Vec::from(testarrays::TEST_I32_VEC_1);
     println!("Input -> {:?}", arr);
-    sorts::bubble_sort(&mut arr);
+    sorts::bubble_sort::sort(&mut arr);
     println!("Result-> {:?}", arr);
 }
 
