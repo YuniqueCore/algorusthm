@@ -13,7 +13,9 @@ This repo for learning the common algorithm and implement them by rust.
 
 - [X] bubble_sort
 - [X] quick_sort
-- [ ] selection_sort
+- [X] selection_sort
+- [X] insertion_sort
+- [ ] merge_sort
 
 # Reference
 

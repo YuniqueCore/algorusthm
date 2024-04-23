@@ -11,7 +11,7 @@ pub const TEST_I32_VEC_1_SORTED: &[i32] = &[0, 1, 2, 3, 4, 4, 7, 8];
 ///
 /// # Returns
 /// Returns a `Vec<i32>` containing random integers between 0 and 100 (inclusive) of the specified length.
-pub fn generate_0_100_vec(length: u8) -> Vec<i32> {
+pub fn generate_0_100_vec(length: usize) -> Vec<i32> {
     generate_random_vec(length, 0, 100)
 }
 
@@ -24,7 +24,7 @@ pub fn generate_0_100_vec(length: u8) -> Vec<i32> {
 ///
 /// # Returns
 /// Returns a `Vec<i32>` containing random integers of the specified length.
-pub fn generate_random_vec(length: u8, min_number: i32, max_number: i32) -> Vec<i32> {
+pub fn generate_random_vec(length: usize, min_number: i32, max_number: i32) -> Vec<i32> {
     let mut rng = thread_rng();
     // Initialize a vector of length `length`, with each element being a random number between `min_number` and `max_number`.
     let mut vec = (0..length)
