@@ -87,3 +87,17 @@ pub fn test_sort_with<T: Debug + Ord>(
         false
     }
 }
+
+pub mod global_counter {
+    use std::sync::atomic::{AtomicUsize, Ordering};
+
+    static DEPTH: AtomicUsize = AtomicUsize::new(0);
+
+    fn get_depth() -> usize {
+        DEPTH.fetch_add(1, Ordering::Relaxed)
+    }
+
+    pub fn init_depth() {
+        DEPTH.store(0, Ordering::Relaxed);
+    }
+}

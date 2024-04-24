@@ -165,3 +165,60 @@ pub mod insertion_sort {
         println!("sort example total iteration times: {}", iter_times);
     }
 }
+
+pub mod merge_sort {
+    use std::vec;
+
+    pub fn sort(arr: &mut [i32], left: usize, right: usize, depth: usize) {
+        // End recursive at only one item
+        if left >= right {
+            return;
+        }
+
+        // Split stage
+        let middle = (left + right) / 2;
+        self::sort(arr, left, middle, depth + 1);
+        self::sort(arr, middle + 1, right, depth + 1);
+        // merge stage
+        self::merge(arr, left, middle, right);
+        println!(
+            "Depth: {} --- left: {} --- right: {} --- Array: {:?}",
+            depth, left, right, arr
+        );
+    }
+
+    fn merge(arr: &mut [i32], left: usize, mid: usize, right: usize) {
+        let (mut i, mut j, mut k) = (left, mid + 1, 0);
+        let tmp_len = right - left + 1;
+        let mut tmp = vec![0; tmp_len];
+
+        while i <= mid && j <= right {
+            if arr[i] <= arr[j] {
+                tmp[k] = arr[i];
+                i += 1;
+            } else {
+                tmp[k] = arr[j];
+                j += 1;
+            }
+            k += 1;
+        }
+
+        while i <= mid {
+            tmp[k] = arr[i];
+            i += 1;
+            k += 1;
+        }
+
+        while j <= right {
+            tmp[k] = arr[j];
+            j += 1;
+            k += 1;
+        }
+
+        // move the tmp to the original array
+        for k in 0..tmp_len {
+            arr[left + k] = tmp[k];
+        }
+        println!("tmp in merge: {:?}", tmp);
+    }
+}

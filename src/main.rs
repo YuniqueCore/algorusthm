@@ -13,7 +13,8 @@ fn main() {
     // swap_num();
     // quick_sort_test();
     // selection_sort_test();
-    insertion_sort_test();
+    // insertion_sort_test();
+    merge_sort_test();
 }
 
 fn import_test() {
@@ -65,6 +66,21 @@ fn insertion_sort_test() {
     println!("Input -> {:?}", arr);
     sorts::insertion_sort::sort(&mut arr);
     sorts::insertion_sort::sort_example(&mut arr_example);
+    println!("Result-> {:?}", arr);
+}
+
+fn merge_sort_test() {
+    utils::println_fn_name(merge_sort_test);
+    let mut arr = Vec::from(testarrays::TEST_I32_VEC_1);
+    let right = arr.len() - 1;
+    println!("Input -> {:?}", arr);
+    sorts::merge_sort::sort(&mut arr, 0, right, 0);
+    println!("Result-> {:?}", arr);
+
+    let mut arr = Vec::from(testarrays::generate_0_100_vec(10));
+    let right = arr.len() - 1;
+    println!("Input -> {:?}", arr);
+    sorts::merge_sort::sort(&mut arr, 0, right, 0);
     println!("Result-> {:?}", arr);
 }
 

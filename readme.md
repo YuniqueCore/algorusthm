@@ -2,20 +2,28 @@
 
 This repo for learning the common algorithm and implement them by rust.
 
+![Static Badge](https://img.shields.io/badge/Algorithm-%23006a4e?style=flat-square&logo=visual%20studio%20code&label=Rust&labelColor=%23a52a2a&link=https%3A%2F%2Fwww.hello-algo.com%2Fchapter_sorting%2F)
+![Static Badge](https://img.shields.io/badge/Rust-brown?style=flat-square&logo=Rust)
+
 # Progress
+
+![Static Badge](https://img.shields.io/badge/Progress_%2540-blue?style=flat-square&logo=Progress)
+
 
 ## Variable Reference
 
-- [X] deref
-- [x] value swap by address
+- [x] Deref
+- [x] Value swap by address
+- [x] Atomic<Type> for global counter
 
 ## Sorts
 
-- [X] bubble_sort
-- [X] quick_sort
-- [X] selection_sort
-- [X] insertion_sort
-- [ ] merge_sort
+- [x] bubble_sort
+- [x] quick_sort
+- [x] selection_sort
+- [x] insertion_sort
+- [x] merge_sort
+- [ ] heap_sort
 
 # Reference
 
