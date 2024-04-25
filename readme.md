@@ -23,7 +23,8 @@ This repo for learning the common algorithm and implement them by rust.
 - [x] selection_sort
 - [x] insertion_sort
 - [x] merge_sort
-- [ ] heap_sort
+- [x] heap_sort
+- [ ] bucket_sort
 
 # Reference
 
