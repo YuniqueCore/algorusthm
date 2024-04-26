@@ -242,7 +242,7 @@ pub mod heap_sort {
         }
     }
 
-    /* 堆的长度为 n ，从节点 i 开始，从顶至底堆化 */
+    /* 堆的长度为 n，从节点 i 开始，从顶至底堆化 */
     fn sift_down(nums: &mut [i32], n: usize, mut i: usize) {
         loop {
             // 判断节点 i, l, r 中值最大的节点，记为 ma
@@ -302,5 +302,77 @@ pub mod heap_sort {
             // arr.swap(i, max);
             i = max;
         }
+    }
+}
+
+pub mod buket_sort {
+
+    pub fn sort(nums: &mut [i32]) {
+        println!("normlization: {:?}", min_max_normalization(nums));
+        let k = nums.len() / 2;
+
+        let mut buckets = vec![vec![]; k];
+        let len = nums.len();
+
+        for i in 0..len {
+            let h = (normalization(nums, nums[i]).unwrap() * k as f64) as usize;
+            println!("i is {}, h is {}", i, h);
+            buckets[h].push(nums[i]);
+        }
+
+        for i in 0..buckets.len() {
+            buckets[i].sort_by(|a, b| a.partial_cmp(b).unwrap());
+        }
+
+        let mut num_index = 0;
+        for bucket in &mut buckets {
+            for &mut num in bucket {
+                nums[num_index] = num;
+                num_index += 1;
+            }
+        }
+    }
+
+    fn normalization(data: &mut [i32], num: i32) -> Option<f64> {
+        if data.is_empty() {
+            return None; // 返回空向量
+        }
+
+        let (min_val, max_val) = data.iter().fold((i32::MAX, i32::MIN), |(min, max), &x| {
+            (min.min(x), max.max(x))
+        });
+
+        // if min_val == max_val {
+        //     // 如果最小值和最大值相等，无法进行归一化
+        //     return None; // 或者返回包含单个元素的向量，取决于您的需求
+        // }
+
+        let normalized = (num - min_val) as f64 / max_val as f64;
+        Some(normalized)
+    }
+
+    fn min_max_normalization(data: &mut [i32]) -> Option<Vec<f64>> {
+        if data.is_empty() {
+            return None; // 或者返回空向量，取决于您的需求
+        }
+
+        let (min_val, max_val) = data.iter().fold((i32::MAX, i32::MIN), |(min, max), &x| {
+            (min.min(x), max.max(x))
+        });
+
+        // if min_val == max_val {
+        //     // 如果最小值和最大值相等，无法进行归一化
+        //     return None; // 或者返回包含单个元素的向量，取决于您的需求
+        // }
+
+        Some(
+            data.iter()
+                .map(|&x| {
+                    let normalized = (x - min_val) as f64 / max_val as f64;
+                    // 如果需要更高的精度，可以使用 `f64::from(x - min_val) / f64::from(max_val - min_val)`
+                    normalized
+                })
+                .collect(),
+        )
     }
 }

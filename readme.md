@@ -15,6 +15,7 @@ This repo for learning the common algorithm and implement them by rust.
 - [x] Deref
 - [x] Value swap by address
 - [x] Atomic<Type> for global counter
+- [x] Normalization
 
 ## Sorts
 
@@ -24,7 +25,8 @@ This repo for learning the common algorithm and implement them by rust.
 - [x] insertion_sort
 - [x] merge_sort
 - [x] heap_sort
-- [ ] bucket_sort
+- [x] bucket_sort (normalization)
+  - [ ] bucket_sort (normal)
 
 # Reference
 

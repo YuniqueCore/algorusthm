@@ -15,7 +15,8 @@ fn main() {
     // selection_sort_test();
     // insertion_sort_test();
     // merge_sort_test();
-    heap_sort_test();
+    // heap_sort_test();
+    bucket_sort_test();
 }
 
 fn import_test() {
@@ -96,6 +97,11 @@ fn heap_sort_test() {
     println!("Input -> {:?}", arr);
     sorts::heap_sort::sort_1(&mut arr);
     println!("Result-> {:?}", arr);
+}
+
+fn bucket_sort_test() {
+    utils::println_fn_name(bucket_sort_test);
+    utils::test_sort(&sorts::buket_sort::sort, 10);
 }
 
 #[allow(unused_variables)]
