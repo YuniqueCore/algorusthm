@@ -26,7 +26,8 @@ This repo for learning the common algorithm and implement them by rust.
 - [x] merge_sort
 - [x] heap_sort
 - [x] bucket_sort (normalization)
-  - [ ] bucket_sort (normal)
+  - [x] bucket_sort (Radix sort)
+- [ ] soon...
 
 # Reference
 

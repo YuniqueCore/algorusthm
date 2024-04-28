@@ -32,7 +32,7 @@ fn selection_sort_test() {
 fn quick_sort_test() {
     utils::println_fn_name(quick_sort_test);
     let in_params = utils::InParams::Params(vec![0, 8]);
-    utils::test_sort_with(&sorts::quick_sort::sort_with_params, in_params, 9);
+    utils::test_sort_with_i32(&sorts::quick_sort::sort_with_params, in_params, 9);
     // let mut arr = Vec::from(testarrays::TEST_I32_VEC_1);
     // println!("Input -> {:?}", arr);
     // let l = arr.len() - 1;
@@ -102,6 +102,11 @@ fn heap_sort_test() {
 fn bucket_sort_test() {
     utils::println_fn_name(bucket_sort_test);
     utils::test_sort(&sorts::buket_sort::sort, 10);
+    utils::test_sort_with_u32(
+        &sorts::buket_sort::radix_sort_with_inparam,
+        utils::InParams::Params(vec![10]),
+        10,
+    );
 }
 
 #[allow(unused_variables)]

@@ -58,7 +58,7 @@ pub fn test_sort(sort_fn: &dyn Fn(&mut [i32]), vec_len: usize) -> bool {
 }
 
 /// Test the sort function with any number of Input parameters
-pub fn test_sort_with<T: Debug + Ord>(
+pub fn test_sort_with_i32<T: Debug + Ord>(
     sort_fn: &dyn Fn(&mut [i32], InParams<T>),
     params: InParams<T>,
     vec_len: usize,
@@ -80,10 +80,43 @@ pub fn test_sort_with<T: Debug + Ord>(
 
     // 检查两个向量是否相等
     if arr == arr_sorted {
-        println!("Sorting is correct.");
+        println!("√√√ Sorting is correct.");
         true
     } else {
-        println!("Sorting is incorrect.");
+        println!("xxx Sorting is incorrect.");
+        false
+    }
+}
+
+pub fn test_sort_with_u32<T: Debug + Ord>(
+    sort_fn: &dyn Fn(&mut [u32], InParams<T>),
+    params: InParams<T>,
+    vec_len: usize,
+) -> bool {
+    // 生成随机向量
+    let mut arr: Vec<u32> = testarrays::generate_0_100_vec(vec_len)
+        .iter()
+        .map(|&x| x as u32)
+        .collect();
+    // 克隆生成的向量以用于排序比较
+    let mut arr_sorted = arr.clone();
+    // 打印生成的向量
+    println!("Input -> {:?}", arr);
+    // 使用提供的排序函数对向量进行排序
+    sort_fn(&mut arr, params);
+    // 使用 Vec 的排序方法对克隆的向量进行排序
+    arr_sorted.sort();
+    // 打印预期的排序结果
+    println!("Expect-> {:?}", arr_sorted);
+    // 打印排序后的结果
+    println!("Result-> {:?}", arr);
+
+    // 检查两个向量是否相等
+    if arr == arr_sorted {
+        println!("√√√ Sorting is correct.");
+        true
+    } else {
+        println!("xxx Sorting is incorrect.");
         false
     }
 }

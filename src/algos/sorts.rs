@@ -306,6 +306,7 @@ pub mod heap_sort {
 }
 
 pub mod buket_sort {
+    use crate::utils::InParams;
 
     pub fn sort(nums: &mut [i32]) {
         println!("normlization: {:?}", min_max_normalization(nums));
@@ -374,5 +375,58 @@ pub mod buket_sort {
                 })
                 .collect(),
         )
+    }
+
+    fn counting_sort(arr: &mut [u32], exp: u32, radix: u32) {
+        let n = arr.len();
+        let mut output = vec![0; n]; // single bucket
+        let mut count = vec![0; radix as usize]; // buckets
+
+        for &val in arr.iter() {
+            let index = (val / exp) % radix;
+            count[index as usize] += 1;
+        }
+
+        for i in 1..radix {
+            count[i as usize] += count[(i - 1) as usize];
+        }
+
+        for &val in arr.iter().rev() {
+            let index = (val / exp) % radix;
+            output[count[index as usize] - 1] = val;
+            count[index as usize] -= 1;
+        }
+
+        arr.copy_from_slice(&output);
+    }
+
+    pub fn radix_sort(arr: &mut [u32], radix: u32) {
+        if radix <= 1 {
+            panic!("Radix must be greater than 1");
+        }
+
+        let max_val = *arr.iter().max().unwrap_or(&0u32);
+        let mut exp = 1;
+
+        while max_val / exp > 0 {
+            counting_sort(arr, exp, radix);
+            exp *= radix;
+        }
+    }
+
+    pub fn radix_sort_with_inparam(arr: &mut [u32], inparam: InParams<u32>) {
+        let InParams::Params(inparams) = inparam;
+        let radix = inparams[0];
+        if radix <= 1 {
+            panic!("Radix must be greater than 1");
+        }
+
+        let max_val = *arr.iter().max().unwrap_or(&0u32);
+        let mut exp = 1;
+
+        while max_val / exp > 0 {
+            counting_sort(arr, exp, radix);
+            exp *= radix;
+        }
     }
 }
