@@ -16,7 +16,8 @@ fn main() {
     // insertion_sort_test();
     // merge_sort_test();
     // heap_sort_test();
-    bucket_sort_test();
+    // bucket_sort_test();
+    radix_sort_test();
 }
 
 fn import_test() {
@@ -102,8 +103,12 @@ fn heap_sort_test() {
 fn bucket_sort_test() {
     utils::println_fn_name(bucket_sort_test);
     utils::test_sort(&sorts::buket_sort::sort, 10);
+}
+
+fn radix_sort_test() {
+    utils::println_fn_name(bucket_sort_test);
     utils::test_sort_with_u32(
-        &sorts::buket_sort::radix_sort_with_inparam,
+        &sorts::radix_sort::sort_with_inparam,
         utils::InParams::Params(vec![10]),
         10,
     );

@@ -306,8 +306,6 @@ pub mod heap_sort {
 }
 
 pub mod buket_sort {
-    use crate::utils::InParams;
-
     pub fn sort(nums: &mut [i32]) {
         println!("normlization: {:?}", min_max_normalization(nums));
         let k = nums.len() / 2;
@@ -376,6 +374,10 @@ pub mod buket_sort {
                 .collect(),
         )
     }
+}
+
+pub mod radix_sort {
+    use crate::utils::InParams;
 
     fn counting_sort(arr: &mut [u32], exp: u32, radix: u32) {
         let n = arr.len();
@@ -400,7 +402,7 @@ pub mod buket_sort {
         arr.copy_from_slice(&output);
     }
 
-    pub fn radix_sort(arr: &mut [u32], radix: u32) {
+    pub fn sort(arr: &mut [u32], radix: u32) {
         if radix <= 1 {
             panic!("Radix must be greater than 1");
         }
@@ -414,7 +416,7 @@ pub mod buket_sort {
         }
     }
 
-    pub fn radix_sort_with_inparam(arr: &mut [u32], inparam: InParams<u32>) {
+    pub fn sort_with_inparam(arr: &mut [u32], inparam: InParams<u32>) {
         let InParams::Params(inparams) = inparam;
         let radix = inparams[0];
         if radix <= 1 {
