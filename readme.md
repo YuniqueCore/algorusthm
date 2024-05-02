@@ -7,7 +7,7 @@ This repo for learning the common algorithm and implement them by rust.
 
 # Progress
 
-![Static Badge](https://img.shields.io/badge/Progress_%2540-blue?style=flat-square&logo=Progress)
+![Static Badge](https://img.shields.io/badge/Progress_%2560-blue?style=flat-square&logo=Progress)
 
 
 ## Variable Reference
