@@ -27,7 +27,18 @@ This repo for learning the common algorithm and implement them by rust.
 - [x] heap_sort
 - [x] bucket_sort (normalization)
 - [x] radix_sort
-- [ ] counting_sort
+- [x] counting_sort
+
+## Sorts info
+
+Picture comes from [Hello-Algo](https://www.hello-algo.com/chapter_sorting/)
+![Comparison of sorting algorithms](./resources/images/ComparisonAlgos.png)
+
+
+## Search methods
+
+- [ ] binary search
+
 
 # Reference
 

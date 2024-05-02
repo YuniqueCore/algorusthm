@@ -432,3 +432,83 @@ pub mod radix_sort {
         }
     }
 }
+
+pub mod counting_sort {
+    use std::vec;
+
+    pub fn sort_simple_by_buckets(nums: &mut [u32]) {
+        if nums.is_empty() {
+            return;
+        }
+        let n = nums.len();
+        let max = nums.into_iter().max().unwrap();
+        let mut buckets = vec![Vec::<u32>::new(); *max as usize + 1];
+        for i in 0..n {
+            buckets[nums[i] as usize].push(nums[i]);
+        }
+        let mut index = 0;
+        for i in 0..buckets.len() {
+            for k in &buckets[i as usize] {
+                nums[index] = *k;
+                index += 1;
+            }
+        }
+    }
+
+    pub fn sort_simple_by_counter(nums: &mut [u32]) {
+        if (nums.is_empty()) {
+            return;
+        }
+        // let n = nums.len();
+        let max = nums.iter().max().unwrap();
+        let mut counter = vec![0; *max as usize + 1];
+
+        for &num in &*nums {
+            counter[num as usize] += 1;
+        }
+
+        let mut index = 0;
+        for num in 0..*max + 1 {
+            for _ in 0..counter[num as usize] {
+                nums[index] = num;
+                index += 1;
+            }
+        }
+    }
+
+    pub fn sort(nums: &mut [u32]) {
+        if (nums.is_empty()) {
+            return;
+        }
+
+        let max = *nums.iter().max().unwrap();
+        let mut counter = vec![0; max as usize + 1];
+        for &num in &*nums {
+            counter[num as usize] += 1;
+        }
+        // Rearrange the counter as the indexer
+        // Find the prefix sum of the counter and convert "occurrence count" to "tail index"
+        for i in 1..counter.len() {
+            counter[i] += counter[i - 1];
+        }
+
+        let n = nums.len();
+        let mut res = vec![0; n];
+        for i in (0..n).rev() {
+            // This code snippet is adjusting the index for accessing elements based on a frequency counter array.
+            // For example:
+            // Given a frequency counter array: [1,0,3,4]
+            // The counter values are adjusted to represent indices: [1,1,4,8]
+            // However, the index derived from the counter might be out of the original array's bounds.
+            // To correct this, we subtract one from the counter value to ensure the index falls within the valid range.
+            // Here, 'index = counter[nums[i] as usize] - 1' adjusts the index to be zero-based, matching the array's indexing.
+            let index = counter[nums[i] as usize] - 1;
+            res[index] = nums[i];
+            counter[nums[i] as usize] -= 1;
+        }
+
+        for i in 0..n {
+            nums[i] = res[i];
+        }
+    }
+}

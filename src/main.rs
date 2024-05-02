@@ -1,5 +1,6 @@
 pub mod algos;
 pub mod data;
+pub mod testutils;
 pub mod utils;
 use std::vec;
 
@@ -17,7 +18,8 @@ fn main() {
     // merge_sort_test();
     // heap_sort_test();
     // bucket_sort_test();
-    radix_sort_test();
+    // radix_sort_test();
+    couting_sort_test();
 }
 
 fn import_test() {
@@ -112,6 +114,14 @@ fn radix_sort_test() {
         utils::InParams::Params(vec![10]),
         10,
     );
+}
+
+fn couting_sort_test() {
+    utils::println_fn_name(couting_sort_test);
+    utils::test_sort_u32(&sorts::counting_sort::sort_simple_by_buckets, 10);
+    // utils::test_sort_u32(&sorts::counting_sort::sort_simple_by_counter, 10);
+    testutils::test_generic_sort(&sorts::counting_sort::sort_simple_by_counter, 10);
+    testutils::test_generic_sort(&sorts::counting_sort::sort, 10);
 }
 
 #[allow(unused_variables)]
